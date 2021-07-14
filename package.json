@@ -1,0 +1,27 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Clone of the game Battleship.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watch tests/*.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jargonite/battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jargonite/battleship/issues"
+  },
+  "homepage": "https://github.com/Jargonite/battleship#readme",
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
