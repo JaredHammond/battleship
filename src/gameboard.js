@@ -88,6 +88,15 @@ const Gameboard = () => {
         return true;
     };
 
+    const allShipsSunk = () => {
+        for (const ship of ships) {
+            if (ship.isSunk() == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     init();
 
     return {
@@ -95,6 +104,7 @@ const Gameboard = () => {
         receiveAttack,
         getShips,
         placeShip,
+        allShipsSunk,
     }
 }
 

@@ -66,7 +66,8 @@ describe('Gameboard', () => {
             boardObj.placeShip(ship, 89, 'y');
         }).toThrow();
     });
-    it('Reports whether all ships are sunk', () => {
-        
+    it('Reports whether all ships are sunk (negative case)', () => {
+        const boardObj = Gameboard();
+        expect(boardObj.allShipsSunk()).toBe(false);
     })
 });
