@@ -1,9 +1,11 @@
 const Ship = require('./ships');
 
 const Gameboard = () => {
+    // Declaration of arrays that will contain the gameboard and the ship objects
     let board = [];
     let ships = [];
 
+    // Standard set of battleships. Can be modified as you want.
     const shipSizes = [
         ['Carrier', 5],
         ['Battleship', 4],
@@ -12,6 +14,7 @@ const Gameboard = () => {
         ['Patrol', 2]
     ]
 
+    // Fills the 'board' and 'ship' arrays with the objects needed for the game to function
     const init = () => {
         for (let i=0; i<100; i++) {
             let info = {
@@ -50,6 +53,8 @@ const Gameboard = () => {
         return Ship(length, shipType);
     }
 
+    // Uses the "bow" of a ship as the initial location, then places ship object in adjacent squares
+    // according to length and axis
     const placeShip = (ship, location, axis) => {
 
         shipLength = ship.getLength();
@@ -73,6 +78,7 @@ const Gameboard = () => {
         }
     }
 
+    // Returns false if the ship placement will be off the board
     const isValidPlacement = (shipLength, location, axis) => {
         if (axis == 'x') {
             if (location % 10 > (location + shipLength - 1) % 10) {
