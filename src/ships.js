@@ -12,6 +12,8 @@ const shipFactory = (length, type) => {
 
     const isSunk = () => sunk;
 
+    const getLength = () => length;
+
     // If ship is sunk, it will set the 'sunk' property to true
     const sunkChecker = () => {
         for (let i=0; i<shipArray.length; i++) {
@@ -29,7 +31,7 @@ const shipFactory = (length, type) => {
 
     
 
-    return {getType, isSunk, hit};
+    return {getType, isSunk, hit, getLength, shipArray};
 }
 
 module.exports = shipFactory;
