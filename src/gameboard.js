@@ -53,20 +53,40 @@ const Gameboard = () => {
     const placeShip = (ship, location, axis) => {
 
         shipLength = ship.getLength();
-        console.log(shipLength);
+
+        if (!isValidPlacement(shipLength, location, axis)) {
+            throw new Error('Error: Invalid Ship Placement');
+        }
 
         if (axis === 'x') {
             for (let i=0; i < shipLength; i++) {
-                if (location % 10 === 9 && i != shipLength - 1) {
-                    throw new Error('Error: Invalid Ship Placement');
-                } else {
-                    board[location + i].shipInfo.hasShip = true;
-                    board[location + i].shipInfo.shipObj = ship;
-                }
+                board[location + i].shipInfo.hasShip = true;
+                board[location + i].shipInfo.shipObj = ship;
             }
+        }
 
+        if (axis === 'y') {
+            for (let i=0; i < shipLength; i++) {
+                board[location + (i * 10)].shipInfo.hasShip = true;
+                board[location + (i * 10)].shipInfo.shipObj = ship;
+            }
         }
     }
+
+    const isValidPlacement = (shipLength, location, axis) => {
+        if (axis == 'x') {
+            if (location % 10 > (location + shipLength - 1) % 10) {
+                return false;
+            };
+        } else if (axis == 'y') {
+            let row = Math.floor(location / 10);
+
+            if (row % 10 > (row + shipLength - 1) % 10) {
+                return false;
+            }
+        }
+        return true;
+    };
 
     init();
 

@@ -32,12 +32,11 @@ describe('Gameboard', () => {
         const board = Gameboard();
         expect(board.getShips()[0].getType()).toBe('Carrier');
     });
-    it('Places a ship on the gameboard', () => {
+    it('Places a ship on the gameboard (x-axis)', () => {
         const boardObj = Gameboard();
         const ship = boardObj.getShips()[0];
         boardObj.placeShip(ship, 4, 'x');
         const board = boardObj.showBoard();
-        console.log(board);
         expect(board[3].shipInfo.hasShip).toBe(false);
         expect(board[4].shipInfo.hasShip).toBe(true);
         expect(board[5].shipInfo.hasShip).toBe(true);
@@ -45,7 +44,29 @@ describe('Gameboard', () => {
         expect(board[7].shipInfo.hasShip).toBe(true);
         expect(board[8].shipInfo.hasShip).toBe(true);
         expect(board[9].shipInfo.hasShip).toBe(false);
-        board[4].shipInfo.shipObj.hit(1);
-        console.log(board[5].shipInfo.shipObj.shipArray)
     });
+    it('Places a ship on the gameboard (y-axis)', () => {
+        const boardObj = Gameboard();
+        const ship = boardObj.getShips()[2];
+        boardObj.placeShip(ship, 14, 'y');
+        const board = boardObj.showBoard();
+        expect(board[4].shipInfo.hasShip).toBe(false);
+        expect(board[14].shipInfo.hasShip).toBe(true);
+        expect(board[24].shipInfo.hasShip).toBe(true);
+        expect(board[34].shipInfo.hasShip).toBe(true);
+        expect(board[44].shipInfo.hasShip).toBe(false);
+    })
+    it('Throws an Error if ship will be off the board', () => {
+        const boardObj = Gameboard();
+        const ship = boardObj.getShips()[0];
+        expect(() => {
+            boardObj.placeShip(ship, 6, 'x');
+        }).toThrow();
+        expect(() => {
+            boardObj.placeShip(ship, 89, 'y');
+        }).toThrow();
+    });
+    it('Reports whether all ships are sunk', () => {
+        
+    })
 });
