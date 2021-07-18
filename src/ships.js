@@ -25,9 +25,12 @@ const shipFactory = (length, type) => {
         return sunkChecker();
     }
 
-    
-
-    return {getType, isSunk, hit, getLength};
+    return {
+        getType,
+        isSunk,
+        hit,
+        getLength,
+    };
 }
 
 module.exports = shipFactory;

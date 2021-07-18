@@ -1,4 +1,3 @@
-const { ContextExclusionPlugin } = require('webpack');
 const Gameboard = require('../src/gameboard')
 
 describe('Gameboard', () => {
@@ -69,5 +68,11 @@ describe('Gameboard', () => {
     it('Reports whether all ships are sunk (negative case)', () => {
         const boardObj = Gameboard();
         expect(boardObj.allShipsSunk()).toBe(false);
-    })
+    });
+    it('Returns simplified version of board for opponent', () => {
+        const boardObj = Gameboard();
+        const boardForOpp = boardObj.boardForOpp();
+        expect(boardForOpp[0].isHit).toBe(false);
+        expect(boardForOpp[0].hasShip).toBe(false);
+    });
 });

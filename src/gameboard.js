@@ -103,6 +103,27 @@ const Gameboard = () => {
         return true;
     }
 
+    // Gives simplified version of the board for the opponent to use
+    const boardForOpp = () => {
+        let boardForEnemy = [];
+
+        board.forEach(square => {
+            let info = {}
+            const {isHit, shipInfo} = square;
+            const {hasShip} = shipInfo;
+
+            // If the square hasn't been attacked, it give ship information
+            if (isHit) {
+                info = {isHit: isHit, hasShip: hasShip}
+            } else {
+                info = {isHit: isHit, hasShip: false};
+            }
+            boardForEnemy.push(info);
+        })
+
+        return boardForEnemy;
+    }
+
     init();
 
     return {
@@ -111,6 +132,7 @@ const Gameboard = () => {
         getShips,
         placeShip,
         allShipsSunk,
+        boardForOpp,
     }
 }
 
