@@ -1,4 +1,4 @@
-const Player = require('../src/player');
+const Player = require('../factories/player');
 
 describe('Player object factory', () => {
     it('Returns own gameboard', () => {
@@ -22,6 +22,17 @@ describe('Player object factory', () => {
     it('Throws an error if a computer play is attempted when not a computer', () => {
         const player = Player(false);
         expect(() => {player.computerPlay()}).toThrow('Error: Player is not a computer');
-    })
+    });
+    it('Populates board with ships if it is a computer player', () => {
+        const computer = Player(true);
+        const board = computer.getOwnBoard();
+
+        let shipCounter = 0;
+        board.forEach(square => {
+            if (square.shipInfo.hasShip) {shipCounter++};
+        });
+
+        expect(shipCounter).toBe(17);
+    });
     
 })

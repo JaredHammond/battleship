@@ -1,4 +1,4 @@
-const Ship = require('../src/ships');
+const Ship = require('../factories/ships');
 
 describe('Ship factory function', () => {
     it('Returns a ship object', () => {

@@ -29,6 +29,31 @@ const Player = (isComp) => {
         return compPlay;
     }
 
+    const placeShipRandom = ship => {
+        const placement = Math.floor(Math.random()*100);
+
+            let axis = Math.floor(Math.random()*2);
+            axis === 0 ? axis = 'x' : axis = 'y';
+
+            try {
+                gameboard.placeShip(ship, placement, axis)
+            } catch {
+                placeShipRandom(ship);
+            }
+    }
+
+    const computerInit = () => {
+        let ships = gameboard.getShips();
+
+        ships.forEach(ship => {
+            placeShipRandom(ship);
+        })
+    }
+
+    if (isComp) {
+        computerInit();
+    }
+
     return {
         getOwnBoard,
         isComputer,
@@ -37,5 +62,6 @@ const Player = (isComp) => {
         sendBoardForOpp,
     }
 };
+
 
 module.exports = Player;

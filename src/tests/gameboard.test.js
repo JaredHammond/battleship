@@ -1,4 +1,4 @@
-const Gameboard = require('../src/gameboard')
+const Gameboard = require('../factories/gameboard');
 
 describe('Gameboard', () => {
     it('Returns an empty game board', () => {

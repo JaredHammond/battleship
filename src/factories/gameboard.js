@@ -57,7 +57,7 @@ const Gameboard = () => {
     // according to length and axis
     const placeShip = (ship, location, axis) => {
 
-        shipLength = ship.getLength();
+        const shipLength = ship.getLength();
 
         if (!isValidPlacement(shipLength, location, axis)) {
             throw new Error('Error: Invalid Ship Placement');
@@ -80,11 +80,11 @@ const Gameboard = () => {
 
     // Returns false if the ship placement will be off the board
     const isValidPlacement = (shipLength, location, axis) => {
-        if (axis == 'x') {
+        if (axis === 'x') {
             if (location % 10 > (location + shipLength - 1) % 10) {
                 return false;
             };
-        } else if (axis == 'y') {
+        } else if (axis === 'y') {
             let row = Math.floor(location / 10);
 
             if (row % 10 > (row + shipLength - 1) % 10) {
@@ -96,7 +96,7 @@ const Gameboard = () => {
 
     const allShipsSunk = () => {
         for (const ship of ships) {
-            if (ship.isSunk() == false) {
+            if (ship.isSunk() ===false) {
                 return false;
             }
         }
