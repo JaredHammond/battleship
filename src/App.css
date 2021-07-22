@@ -13,3 +13,7 @@
   border: 1px black solid;
   max-width: 500px;
 }
+
+.attackHover:hover {
+  background-color: rgb(141, 1, 1);
+}

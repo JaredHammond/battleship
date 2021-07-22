@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css'
+import classNames from 'classnames';
+
 
 class Square extends Component {
     constructor(props) {
@@ -9,7 +11,11 @@ class Square extends Component {
 
     render() {
         return(
-            <div className='square' />
+            <div className={classNames({
+                square: true,
+                shipHover: this.props.shipHover,
+                attackHover: true //this.props.attackHover
+            })} />
         )
     }
 }

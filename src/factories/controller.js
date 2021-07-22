@@ -9,13 +9,17 @@ const Controller = (() => {
 
     const startGame = () => {
         updateBoards();
-
+        
         
     }
 
     const updateBoards = () => {
         player1.setOppBoard(computer.sendBoardForOpp());
         computer.setOppBoard(player1.sendBoardForOpp());
+    }
+
+    const playerPlaceShips = () => {
+
     }
 
     return {
