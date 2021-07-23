@@ -12,16 +12,22 @@ class App extends Component {
     this.player1 = Player(false);
     this.ownBoard = this.player1.getOwnBoard();
     this.state = {
+      phase: {
+        placement: true
+      },
       turn: 'player',
-      pregame: true,
       winner: null,
       axis: 'x'
     }
   }
 
+  handleSquareHoverPlacement(squareId) {
+
+  }
+
 
   render() {
-  Controller.startGame();
+  
 
     return(
       <Board board={this.ownBoard} hover={true} />

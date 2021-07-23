@@ -9,7 +9,7 @@ class Board extends Component {
             <div className='board'>
                 {board.map(
                     function squareIterator(square, i) {
-                        return <Square hover={hover} board={board} />
+                        return <Square key={i} hover={hover} square={square} />
                     })
                 }
             </div>

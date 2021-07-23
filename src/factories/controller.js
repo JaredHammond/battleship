@@ -5,12 +5,12 @@ const Controller = (() => {
     const computer = Player(true);
     const players = [player1, computer];
 
+    let shipQueue = player1.getShips();
+
     const getPlayers = () => players;
 
     const startGame = () => {
         updateBoards();
-        
-        
     }
 
     const updateBoards = () => {
@@ -18,14 +18,15 @@ const Controller = (() => {
         computer.setOppBoard(player1.sendBoardForOpp());
     }
 
-    const playerPlaceShips = () => {
-
+    const nextShip = () => {
+        return shipQueue.shift();
     }
 
     return {
         startGame,
         updateBoards,
         getPlayers,
+        nextShip,
     }
 
 })();

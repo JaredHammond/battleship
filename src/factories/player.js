@@ -50,6 +50,10 @@ const Player = (isComp) => {
         })
     }
 
+    const getShips = () => {
+        return gameboard.getShips();
+    }
+
     if (isComp) {
         computerInit();
     }
@@ -60,6 +64,7 @@ const Player = (isComp) => {
         computerPlay,
         setOppBoard,
         sendBoardForOpp,
+        getShips,
     }
 };
 

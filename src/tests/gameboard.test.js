@@ -65,6 +65,15 @@ describe('Gameboard', () => {
             boardObj.placeShip(ship, 89, 'y');
         }).toThrow();
     });
+    it('Throws an error if there is already a ship placed in that location', () =>{
+        const boardObj = Gameboard();
+        const ship1 = boardObj.getShips()[0];
+        const ship2 = boardObj.getShips()[1];
+        boardObj.placeShip(ship1, 4, 'x');
+        expect(() => {
+            boardObj.placeShip(ship2, 3, 'x');
+        }).toThrow();
+    })
     it('Reports whether all ships are sunk (negative case)', () => {
         const boardObj = Gameboard();
         expect(boardObj.allShipsSunk()).toBe(false);

@@ -63,6 +63,10 @@ const Gameboard = () => {
             throw new Error('Error: Invalid Ship Placement');
         }
 
+        if (alreadyHasShip(shipLength, location, axis)) {
+            throw new Error('Error: Invalid Ship Placement');
+        }
+
         if (axis === 'x') {
             for (let i=0; i < shipLength; i++) {
                 board[location + i].shipInfo.hasShip = true;
@@ -78,12 +82,38 @@ const Gameboard = () => {
         }
     }
 
+    // Given a square, axis, and ship, will return all affected squares and whether
+    // it is a valid placement
+    const placementHoverSquares = (ship, location, axis) => {
+        let valid = true;
+        let shipSquares = []
+        let currentLoc
+
+        if (alreadyHasShip || !isValidPlacement) {
+            valid = false
+        }
+
+        for (let i=0; i<ship.getLength(); i++) {
+            if (axis === 'x') {
+                currentLoc = location + i;
+            } else {
+                currentLoc = location + (i*10);
+            }
+
+            if (currentLoc >= 0 && currentLoc <= 99) {
+                shipSquares.push(currentLoc);
+            }
+        }
+
+        return {valid, shipSquares};
+    }
+
     // Returns false if the ship placement will be off the board
     const isValidPlacement = (shipLength, location, axis) => {
         if (axis === 'x') {
             if (location % 10 > (location + shipLength - 1) % 10) {
                 return false;
-            };
+            }
         } else if (axis === 'y') {
             let row = Math.floor(location / 10);
 
@@ -93,6 +123,26 @@ const Gameboard = () => {
         }
         return true;
     };
+
+    const alreadyHasShip = (shipLength, location, axis) => {
+        if (axis === 'x') {
+            for (let i=0; i < shipLength; i++) {
+                if (board[location + i].shipInfo.hasShip) {
+                    return true;
+                }
+            }
+        }
+
+        if (axis === 'y') {
+            for (let i=0; i < shipLength; i++) {
+                if (board[location + (i * 10)].shipInfo.hasShip) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     const allShipsSunk = () => {
         for (const ship of ships) {
@@ -133,6 +183,7 @@ const Gameboard = () => {
         placeShip,
         allShipsSunk,
         boardForOpp,
+        placementHoverSquares,
     }
 }
 
