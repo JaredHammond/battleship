@@ -4,12 +4,12 @@ import '../App.css'
 
 class Board extends Component {
     render() {
-        const {board, hover} = this.props
+        const {board, hover, click} = this.props
         return (
             <div className='board'>
                 {board.map(
                     function squareIterator(square, i) {
-                        return <Square key={i} hover={hover} square={square} />
+                        return <Square key={i} id={i} hover={hover} square={square} click={click} />
                     })
                 }
             </div>

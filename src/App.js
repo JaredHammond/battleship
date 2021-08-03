@@ -1,6 +1,6 @@
 import './App.css';
 import React, {Component} from 'react';
-import Board from './components/Board';
+import PlacementBoard from './components/PlacementBoard'
 import Controller from './factories/controller'
 
 const Player = require('./factories/player');
@@ -9,12 +9,12 @@ const Player = require('./factories/player');
 class App extends Component {
   constructor() {
     super()
-    this.player1 = Player(false);
-    this.ownBoard = this.player1.getOwnBoard();
     this.state = {
-      phase: {
-        placement: true
+      players: {
+        player: Player(false),
+        comp: Player(true)
       },
+      phase: 'placement',
       turn: 'player',
       winner: null,
       axis: 'x'
@@ -27,11 +27,13 @@ class App extends Component {
 
 
   render() {
+    ownBoard = this.state.players.player.getOwnBoard();
   
-
-    return(
-      <Board board={this.ownBoard} hover={true} />
-    )
+    if (this.state.phase === 'placement') {
+      return(
+        <PlacementBoard board={ownBoard} onClick={} onHover={} />
+      )
+    }
   }
 }
 

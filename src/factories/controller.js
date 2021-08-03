@@ -22,6 +22,20 @@ const Controller = (() => {
         return shipQueue.shift();
     }
 
+    const placementOnHover = (e) => {
+        const location = e.target.id;
+        const ship = nextShip();
+
+        const {valid, colorSquares} = this.state.players.player.gameboard.placementHoverSquares(ship, location, this.state.axis)
+
+        let colorSquareObj = {}
+        const color = valid ? 'blue' : 'red';
+
+        colorSquares.forEach(square => {
+            colorSquareObj.square = 
+        })
+    }
+
     return {
         startGame,
         updateBoards,
@@ -29,6 +43,6 @@ const Controller = (() => {
         nextShip,
     }
 
-})();
+});
 
 export default Controller;

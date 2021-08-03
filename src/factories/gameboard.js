@@ -86,7 +86,7 @@ const Gameboard = () => {
     // it is a valid placement
     const placementHoverSquares = (ship, location, axis) => {
         let valid = true;
-        let shipSquares = []
+        let colorSquares = []
         let currentLoc
 
         if (alreadyHasShip || !isValidPlacement) {
@@ -101,11 +101,11 @@ const Gameboard = () => {
             }
 
             if (currentLoc >= 0 && currentLoc <= 99) {
-                shipSquares.push(currentLoc);
+                colorSquares.push(currentLoc);
             }
         }
 
-        return {valid, shipSquares};
+        return {valid, colorSquares};
     }
 
     // Returns false if the ship placement will be off the board

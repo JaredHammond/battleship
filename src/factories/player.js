@@ -65,6 +65,7 @@ const Player = (isComp) => {
         setOppBoard,
         sendBoardForOpp,
         getShips,
+        gameboard
     }
 };
 
