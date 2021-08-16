@@ -4,12 +4,14 @@ import '../App.css'
 
 class Board extends Component {
     render() {
-        const {board, hover, click} = this.props
+        const {board, onHover, onClick, colorInfo, swapAxis} = this.props
         return (
             <div className='board'>
                 {board.map(
                     function squareIterator(square, i) {
-                        return <Square key={i} id={i} hover={hover} square={square} click={click} />
+                        const color = colorInfo[i] ? colorInfo[i] : null;
+
+                        return <Square key={i} id={i} onHover={onHover} swapAxis={swapAxis} color={color} square={square} onClick={onClick} />
                     })
                 }
             </div>

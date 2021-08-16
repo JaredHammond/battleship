@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import '../App.css'
 
-
+/*
+* Object that displays an individual square on the gameboard.
+* The functions for onHover and onClick are determined by app.js passing
+* down through the react component tree.
+*/
 class Square extends Component {
     constructor(props) {
         super(props)
@@ -11,17 +15,27 @@ class Square extends Component {
         this.isHit = this.props.square.isHit;
     }
 
-    classBuilder(boardMode) {
-        let classList = 'square'
-        if (this.isHit === true && this.shipObj) {
-            classList.push(' always-red')
-            return classList
+    classNameBuilder() {
+        let className = 'square'
+
+        if (this.hasShip && !this.isHit) {
+            className += ' ' + 'blue';
         }
+
+        if (this.props.color != null) {
+            className += ' ' + this.props.color
+        }
+
+        if (this.hasShip && this.isHit) {
+            className = 'square red'
+        }
+        return className
     }
 
     render() {
+        const {id} = this.props
         return(
-            <div className='square' />
+            <div className={this.classNameBuilder()} onClick={() => this.props.onClick(id)} onMouseEnter={() => this.props.onHover(id)} />
         )
     }
 }

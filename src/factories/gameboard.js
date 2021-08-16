@@ -89,22 +89,25 @@ const Gameboard = () => {
         let colorSquares = []
         let currentLoc
 
-        if (alreadyHasShip || !isValidPlacement) {
+        if (alreadyHasShip(ship.getLength(), location, axis) || !isValidPlacement(ship.getLength(), location, axis)) {
             valid = false
         }
 
         for (let i=0; i<ship.getLength(); i++) {
             if (axis === 'x') {
                 currentLoc = location + i;
+                if (currentLoc % 10 >= location % 10) {
+                    colorSquares.push(currentLoc);
+                }
             } else {
+                // Y axis case
                 currentLoc = location + (i*10);
-            }
+                if (currentLoc <= 99) {
+                    colorSquares.push(currentLoc);
+                }
 
-            if (currentLoc >= 0 && currentLoc <= 99) {
-                colorSquares.push(currentLoc);
             }
         }
-
         return {valid, colorSquares};
     }
 
@@ -127,6 +130,9 @@ const Gameboard = () => {
     const alreadyHasShip = (shipLength, location, axis) => {
         if (axis === 'x') {
             for (let i=0; i < shipLength; i++) {
+                if (location + i > 99) {
+                    return null;
+                }
                 if (board[location + i].shipInfo.hasShip) {
                     return true;
                 }
@@ -135,6 +141,9 @@ const Gameboard = () => {
 
         if (axis === 'y') {
             for (let i=0; i < shipLength; i++) {
+                if (location + (i * 10) > 99) {
+                    return null;
+                }
                 if (board[location + (i * 10)].shipInfo.hasShip) {
                     return true;
                 }

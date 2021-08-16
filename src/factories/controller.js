@@ -1,6 +1,6 @@
 import Player from './player';
 
-const Controller = (() => {
+const Controller = () => {
     const player1 = Player(false);
     const computer = Player(true);
     const players = [player1, computer];
@@ -22,18 +22,19 @@ const Controller = (() => {
         return shipQueue.shift();
     }
 
-    const placementOnHover = (e) => {
-        const location = e.target.id;
-        const ship = nextShip();
+    function placementOnHover(id, ship) {
+        const location = id;
 
-        const {valid, colorSquares} = this.state.players.player.gameboard.placementHoverSquares(ship, location, this.state.axis)
+        const {valid, colorSquares} = this.state.players.player.gameboard.placementHoverSquares(ship, location, this.state.placementPhase.axis)
 
         let colorSquareObj = {}
         const color = valid ? 'blue' : 'red';
 
         colorSquares.forEach(square => {
-            colorSquareObj.square = 
+            colorSquareObj[square] = color;
         })
+
+        return colorSquareObj;
     }
 
     return {
@@ -41,8 +42,9 @@ const Controller = (() => {
         updateBoards,
         getPlayers,
         nextShip,
+        placementOnHover
     }
 
-});
+};
 
 export default Controller;
